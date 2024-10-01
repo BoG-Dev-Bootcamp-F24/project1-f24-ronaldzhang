@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemon, setPokemon] = useState(null);
+  const [pokemonId, setPokemonId] = useState(1);
+  const [attributes, setAttributes] = useState('info');
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+      .then((response) => response.json())
+      .then((data) => setPokemon(data));
+  }, [pokemonId]);
+
+  const next = () => setPokemonId((prevId) => prevId + 1);
+  const prev = () => setPokemonId((prevId) => (prevId > 1 ? prevId - 1 : 1));
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {pokemon && (
+        <div>
+          <h1>Bits of Good Mid-Semester Project</h1>
+          <div>
+            <img>{pokemon.sprites.front_defualt}</img>
+            <p>{pokemon.name}</p>
+            <p><b>Types:</b></p>
+          </div>
+          <div>
+            <button onClick={prev}>{'<'}</button>
+            <button onClick={next}>{'>'}</button>
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
