@@ -12,8 +12,8 @@ function App() {
       .then((data) => setPokemon(data));
   }, [pokemonId]);
 
-  const next = () => setPokemonId((prevId) => prevId + 1);
-  const prev = () => setPokemonId((prevId) => (prevId > 1 ? prevId - 1 : 1));
+  const next = () => setPokemonId((currId) => currId + 1);
+  const prev = () => setPokemonId((currId) => (currId > 1 ? currId - 1 : 1));
 
   return (
     <div>
@@ -21,9 +21,14 @@ function App() {
         <div>
           <h1>Bits of Good Mid-Semester Project</h1>
           <div>
-            <img>{pokemon.sprites.front_defualt}</img>
+            <img src = {pokemon.sprites.front_default} />
             <p>{pokemon.name}</p>
             <p><b>Types:</b></p>
+            <div>
+              {pokemon.types.map((typeInfo, index) => (
+                <span key={index}>{typeInfo.type.name}</span>
+              ))}
+            </div>
           </div>
           <div>
             <button onClick={prev}>{'<'}</button>
