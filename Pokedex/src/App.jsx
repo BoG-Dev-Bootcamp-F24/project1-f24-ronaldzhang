@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [pokemon, setPokemon] = useState(null);
@@ -18,45 +18,64 @@ function App() {
   return (
     <div>
       {pokemon && (
-        <><div>
-          <h1>Bits of Good Mid-Semester Project</h1>
+        <>
+          {/* Left Column (Image, Types, Navigation) */}
           <div>
-            <img src={pokemon.sprites.front_default} />
-            <p>{pokemon.name}</p>
-            <p><b>Types:</b></p>
+            <h1>Bits of Good Mid-Semester Project</h1>
             <div>
-              {pokemon.types.map((typeInfo, index) => (
-                <span key={index}>{typeInfo.type.name}</span>
-              ))}
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+              <p>{pokemon.name}</p>
+              <p><b>Types:</b></p>
+              <div>
+                {pokemon.types.map((typeInfo, index) => (
+                  <span key={index}>{typeInfo.type.name}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <button onClick={prev}>{'<'}</button>
+              <button onClick={next}>{'>'}</button>
             </div>
           </div>
-          <div>
-            <button onClick={prev}>{'<'}</button>
-            <button onClick={next}>{'>'}</button>
-          </div>
-        </div>
 
-        <div>
-          <h2><b>Info</b></h2>
+          {/* Right Column */}
           <div>
-            <p>height: {pokemon.height / 10}m</p>
-            <p>weight: {pokemon.weight / 10}kg</p>
-            <ul>
-              {pokemon.stats.map((statInfo, index) => (
-                <li key={index}>
-                  {statInfo.stat.name}: {statInfo.base_stat}
-                </li>
-              ))}
-            </ul>
+            <h2><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
+            <div>
+              {/* Conditionally Render Info or Moves */}
+              {attributes === 'info' ? (
+                <div>
+                  <p>height: {pokemon.height / 10}m</p>
+                  <p>weight: {pokemon.weight / 10}kg</p>
+                  <ul>
+                    {pokemon.stats.map((statInfo, index) => (
+                      <li key={index}>
+                        {statInfo.stat.name}: {statInfo.base_stat}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div>
+                  <ul>
+                    {pokemon.moves.map((moveInfo, index) => (
+                      <li key={index}>{moveInfo.move.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Toggle Buttons for Info and Moves */}
+            <div className='toggleBtns'>
+              <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
+              <button className={attributes === 'moves' ? 'active' : ''} onClick={() => setAttributes('moves')}>Moves</button>
+            </div>
           </div>
-          <div className='toggleBtns'>
-          <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
-          <button className={attributes === 'moves' ? '' : 'active'} onClick={() => setAttributes('moves')}>Moves</button>
-          </div>
-        </div></>
+        </>
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
