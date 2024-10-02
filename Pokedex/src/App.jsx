@@ -40,53 +40,53 @@ function App() {
     <div className='pokeDex'>
       {pokemon && (
         <>
-          <div>
-            <h1>Bits of Good Mid-Semester Project</h1>
+          <h1>Bits of Good Mid-Semester Project</h1>
+          <div className="content">
             <div className='leftSide'>
               <img src={pokemon.sprites.front_default} alt={pokemon.name} />
               <p id='pokeName'>{pokemon.name}</p>
               <p><b>Types:</b></p>
               <div>
                 {pokemon.types.map((typeInfo, index) => (
-                  <span key={index}className='pokeTypes'style={{ backgroundColor: typeColors[typeInfo.type.name] }}>{typeInfo.type.name}</span>
+                  <span key={index} className='pokeTypes' style={{ backgroundColor: typeColors[typeInfo.type.name] }}>{typeInfo.type.name}</span>
                 ))}
               </div>
               <div className='arrows'>
-                <button className='arrowBtns'onClick={prev}>{'<'}</button>
-                <button className='arrowBtns'onClick={next}>{'>'}</button>
+                <button className='arrowBtns' onClick={prev}>{'<'}</button>
+                <button className='arrowBtns' onClick={next}>{'>'}</button>
               </div>
             </div>
-          </div>
 
-          <div className='rightSide'>
-            <h2 className='infoTag'><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
-            <div className='infos'>
-              {attributes === 'info' ? (
-                <div>
-                  <p>
-                    height: {pokemon.height / 10}m<br />
-                    weight: {pokemon.weight / 10}kg<br />
-                    {pokemon.stats.map((statInfo, index) => (
-                      <React.Fragment key={index}>
-                        {statInfo.stat.name}: {statInfo.base_stat}
-                        {index < pokemon.stats.length - 1 && <br />}
-                      </React.Fragment>
-                    ))}
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <ul>
-                    {pokemon.moves.map((moveInfo, index) => (
-                      <li key={index}>{moveInfo.move.name}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <div className='toggleBtns'>
-              <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
-              <button className={attributes === 'moves' ? 'active' : ''} onClick={() => setAttributes('moves')}>Moves</button>
+            <div className='rightSide'>
+              <h2 className='infoTag'><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
+              <div className='infos'>
+                {attributes === 'info' ? (
+                  <div>
+                    <p>
+                      height: {pokemon.height / 10}m<br />
+                      weight: {pokemon.weight / 10}kg<br />
+                      {pokemon.stats.map((statInfo, index) => (
+                        <React.Fragment key={index}>
+                          {statInfo.stat.name}: {statInfo.base_stat}
+                          {index < pokemon.stats.length - 1 && <br />}
+                        </React.Fragment>
+                      ))}
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <ul>
+                      {pokemon.moves.map((moveInfo, index) => (
+                        <li key={index}>{moveInfo.move.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <div className='toggleBtns'>
+                <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
+                <button className={attributes === 'moves' ? 'active' : ''} onClick={() => setAttributes('moves')}>Moves</button>
+              </div>
             </div>
           </div>
         </>
