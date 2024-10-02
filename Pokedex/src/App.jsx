@@ -15,20 +15,40 @@ function App() {
   const next = () => setPokemonId((currId) => currId + 1);
   const prev = () => setPokemonId((currId) => (currId > 1 ? currId - 1 : 1));
 
+  const typeColors = {
+    normal: '#A8A77A',
+    fire: '#EE8130',
+    water: '#6390F0',
+    electric: '#F7D02C',
+    grass: '#7AC74C',
+    ice: '#96D9D6',
+    fighting: '#C22E28',
+    poison: '#A33EA1',
+    ground: '#E2BF65',
+    flying: '#A98FF3',
+    psychic: '#F95587',
+    bug: '#A6B91A',
+    rock: '#B6A136',
+    ghost: '#735797',
+    dragon: '#6F35FC',
+    dark: '#705746',
+    steel: '#B7B7CE',
+    fairy: '#D685AD',
+  };
+
   return (
     <div>
       {pokemon && (
         <>
-          {/* Left Column (Image, Types, Navigation) */}
           <div>
             <h1>Bits of Good Mid-Semester Project</h1>
             <div>
               <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              <p>{pokemon.name}</p>
+              <p id='pokeName'>{pokemon.name}</p>
               <p><b>Types:</b></p>
               <div>
                 {pokemon.types.map((typeInfo, index) => (
-                  <span key={index}>{typeInfo.type.name}</span>
+                  <span key={index}className='pokeTypes'style={{ backgroundColor: typeColors[typeInfo.type.name] }}>{typeInfo.type.name}</span>
                 ))}
               </div>
             </div>
@@ -38,11 +58,9 @@ function App() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div>
             <h2><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
             <div>
-              {/* Conditionally Render Info or Moves */}
               {attributes === 'info' ? (
                 <div>
                   <p>height: {pokemon.height / 10}m</p>
@@ -65,8 +83,6 @@ function App() {
                 </div>
               )}
             </div>
-
-            {/* Toggle Buttons for Info and Moves */}
             <div className='toggleBtns'>
               <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
               <button className={attributes === 'moves' ? 'active' : ''} onClick={() => setAttributes('moves')}>Moves</button>
