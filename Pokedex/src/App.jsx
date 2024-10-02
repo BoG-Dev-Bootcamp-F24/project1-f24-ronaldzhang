@@ -37,12 +37,12 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='pokeDex'>
       {pokemon && (
         <>
           <div>
             <h1>Bits of Good Mid-Semester Project</h1>
-            <div>
+            <div className='leftSide'>
               <img src={pokemon.sprites.front_default} alt={pokemon.name} />
               <p id='pokeName'>{pokemon.name}</p>
               <p><b>Types:</b></p>
@@ -51,27 +51,28 @@ function App() {
                   <span key={index}className='pokeTypes'style={{ backgroundColor: typeColors[typeInfo.type.name] }}>{typeInfo.type.name}</span>
                 ))}
               </div>
-            </div>
-            <div>
-              <button onClick={prev}>{'<'}</button>
-              <button onClick={next}>{'>'}</button>
+              <div className='arrows'>
+                <button className='arrowBtns'onClick={prev}>{'<'}</button>
+                <button className='arrowBtns'onClick={next}>{'>'}</button>
+              </div>
             </div>
           </div>
 
-          <div>
-            <h2><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
-            <div>
+          <div className='rightSide'>
+            <h2 className='infoTag'><b>{attributes === 'info' ? 'Info' : 'Moves'}</b></h2>
+            <div className='infos'>
               {attributes === 'info' ? (
                 <div>
-                  <p>height: {pokemon.height / 10}m</p>
-                  <p>weight: {pokemon.weight / 10}kg</p>
-                  <ul>
+                  <p>
+                    height: {pokemon.height / 10}m<br />
+                    weight: {pokemon.weight / 10}kg<br />
                     {pokemon.stats.map((statInfo, index) => (
-                      <li key={index}>
+                      <React.Fragment key={index}>
                         {statInfo.stat.name}: {statInfo.base_stat}
-                      </li>
+                        {index < pokemon.stats.length - 1 && <br />}
+                      </React.Fragment>
                     ))}
-                  </ul>
+                  </p>
                 </div>
               ) : (
                 <div>

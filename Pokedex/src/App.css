@@ -6,8 +6,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   color: black;
+  overflow: auto;
 }
 
 h1 {
@@ -43,9 +43,83 @@ p {
   display: inline-block;
   padding: 3px 3px;
   margin-right: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   border-radius: 5px;
   font-size: 12px;
   min-width: 50px;
   text-align: center;
+}
+
+.arrowBtns {
+  
+  width: 75px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 0 10px;
+  height: 35px;
+}
+
+.arrows {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokeDex {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1000px;
+  border: 1px solid black;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.infos {
+  background-color: #f0f0f0;
+  width: 225px;
+  padding-left: 20px;
+  padding-top: 1px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.infoTag {
+  width: 225;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleBtns {
+  width: 245px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggleBtns button {
+  color: black;
+  width: 75px;
+  height: 35px;
+  margin: 0 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.active {
+  background-color: lightgreen;
 }
