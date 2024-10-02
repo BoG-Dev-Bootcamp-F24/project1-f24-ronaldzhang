@@ -18,10 +18,10 @@ function App() {
   return (
     <div>
       {pokemon && (
-        <div>
+        <><div>
           <h1>Bits of Good Mid-Semester Project</h1>
           <div>
-            <img src = {pokemon.sprites.front_default} />
+            <img src={pokemon.sprites.front_default} />
             <p>{pokemon.name}</p>
             <p><b>Types:</b></p>
             <div>
@@ -35,6 +35,25 @@ function App() {
             <button onClick={next}>{'>'}</button>
           </div>
         </div>
+
+        <div>
+          <h2><b>Info</b></h2>
+          <div>
+            <p>height: {pokemon.height / 10}m</p>
+            <p>weight: {pokemon.weight / 10}kg</p>
+            <ul>
+              {pokemon.stats.map((statInfo, index) => (
+                <li key={index}>
+                  {statInfo.stat.name}: {statInfo.base_stat}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className='toggleBtns'>
+          <button className={attributes === 'info' ? 'active' : ''} onClick={() => setAttributes('info')}>Info</button>
+          <button className={attributes === 'moves' ? '' : 'active'} onClick={() => setAttributes('moves')}>Moves</button>
+          </div>
+        </div></>
       )}
     </div>
   )
